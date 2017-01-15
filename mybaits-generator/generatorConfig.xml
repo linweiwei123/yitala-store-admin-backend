@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE generatorConfiguration   
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location=".\mysql-connector-java-5.1.38.jar" />
+
+	<context id="OracleTables" targetRuntime="MyBatis3">
+		<!-- 关闭注解信息 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/yitalastore" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- model的配置 -->
+		<javaModelGenerator targetPackage="console.entity"
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="false" />
+		</javaModelGenerator>
+
+		<!-- mybatis的xml的配置 -->
+		<sqlMapGenerator targetPackage="console.mapper"
+			targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- mapper的配置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="console.mapper" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+<!-- 		+++++++++++++++++++++++++++++++++++++++++++++++++ -->
+ 
+   
+
+		<table tableName="product" 
+		domainObjectName="Product" 
+		enableCountByExample="false"
+		 enableUpdateByExample="false"
+		  enableDeleteByExample="false"
+		   enableSelectByExample="false" 
+		   selectByExampleQueryId="false" />
+
+<!-- 
+<table tableName="cigp_apply_material" domainObjectName="ApplyMaterial" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="apply_material_ID" sqlStatement="select seq_cigp_apply_material.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_audit" domainObjectName="Audit" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="audit_ID" sqlStatement="select seq_cigp_audit.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_dict" domainObjectName="Dict" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="dict_ID" sqlStatement="select seq_cigp_dict.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_dict_value" domainObjectName="DictValue" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="dict_value_ID" sqlStatement="select seq_cigp_dict_value.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_marriage" domainObjectName="Marriage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">  </table>
+	   
+<table tableName="cigp_marriage_child" domainObjectName="MarriageChild" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="marriage_child_ID" sqlStatement="select seq_cigp_marriage_child.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_material" domainObjectName="Material" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="material_ID" sqlStatement="select seq_cigp_material.nextval from dual" type="pre"   /></table>
+	   
+<table tableName="cigp_apply" domainObjectName="Apply" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="apply_ID" sqlStatement="select seq_cigp_apply.nextval from dual" type="pre"    /></table>
+	   
+<table tableName="cigp_service" domainObjectName="Service" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> <generatedKey column="service_ID" sqlStatement="select seq_cigp_service.nextval from dual" type="pre"   /></table>
+-->
+
+	</context>
+
+
+</generatorConfiguration> 

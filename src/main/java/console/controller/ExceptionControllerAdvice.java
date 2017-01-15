@@ -1,4 +1,4 @@
-package console.product;
+package console.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,10 @@
-package console.product;
+package console.controller;
 
 import java.util.Date;
 import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +21,14 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 
 import common.Constants;
-import utils.DateUtils;
+import common.utils.DateUtils;
+import console.model.ImageModel;
 
 @RestController
 @RequestMapping(value="/api")
 public class FileUploadController {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //设置好账号的ACCESS_KEY和SECRET_KEY
     private String ACCESS_KEY = "ei1uOdGpVLliA7kb50sLcV9i4wfYLPwt5v0shU10";
@@ -49,21 +55,27 @@ public class FileUploadController {
     //创建上传对象
     private UploadManager uploadManager = new UploadManager(c);
     
-	 @RequestMapping(value="/fileupload",headers = "Content-Type= multipart/form-data")
+	@SuppressWarnings("null")
+	@RequestMapping(value="/fileupload",headers = "Content-Type= multipart/form-data")
 	    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws Exception {
-		 ImageModel imageModel = null;
+		 ImageModel imageModel = new ImageModel();
 		 	
 			try {
 				Date now = new Date();
-				String time = DateUtils.format(now, "yyyyMMdd");
+				String time = DateUtils.getDateFormatT(now);
 				String key =time  +"_"+ file.getOriginalFilename(); 
 				uploadManager.put(file.getBytes(), key, getUpToken());			
 				UUID imgId = UUID.randomUUID();
 				String fileUrl = Constants.QiniuBaseUrl + key;
-				imageModel = new ImageModel(imgId.toString(),now,file.getOriginalFilename(),fileUrl);
+				//imageModel = new ImageModel(imgId.toString(),now,file.getOriginalFilename(),fileUrl);
+				imageModel.setImgId(imgId.toString());
+				imageModel.setDate(now);
+				imageModel.setFileUrl(fileUrl);
+				imageModel.setFilename(file.getOriginalFilename());
 			} catch (QiniuException  e) {
+					logger.info(e.getMessage());
 				   Response r = e.response;
-				   return new ResponseEntity<String>(r.toString(), HttpStatus.BAD_REQUEST);
+				   return new ResponseEntity<String>(r.toString(), HttpStatus.OK);
 			}
 			//throw new Exception("错误");
 	        return new ResponseEntity<ImageModel>(imageModel, HttpStatus.OK);

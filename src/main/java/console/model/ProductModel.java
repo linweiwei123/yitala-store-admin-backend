@@ -3,8 +3,6 @@ package console.model;
 import java.io.Serializable;
 import java.util.List;
 
-import console.product.ImageModel;
-
 public class ProductModel implements Serializable{
 
 
@@ -13,8 +11,8 @@ public class ProductModel implements Serializable{
 	private String name;
     private String brand;
 	private String type;
-	private int price;
-	private int discount;
+	private Integer price;
+	private Integer discount;
 	private String status;
 	private String description;
 	private String color;
@@ -39,16 +37,17 @@ public class ProductModel implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getPrice() {
+
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public int getDiscount() {
+	public Integer getDiscount() {
 		return discount;
 	}
-	public void setDiscount(int discount) {
+	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
 	public String getStatus() {

@@ -1,4 +1,4 @@
-package console.product;
+package console.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,13 +35,13 @@ public class ImageModel implements Serializable{
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
 	}
-	public ImageModel(String imgId, Date date, String filename, String fileUrl) {
-		super();
-		this.imgId = imgId;
-		this.date = date;
-		this.filename = filename;
-		this.fileUrl = fileUrl;
-	}
+//	public ImageModel(String imgId, Date date, String filename, String fileUrl) {
+//		super();
+//		this.imgId = imgId;
+//		this.date = date;
+//		this.filename = filename;
+//		this.fileUrl = fileUrl;
+//	}
 	
 	
 	
